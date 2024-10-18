@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<head>
+    <title>API Data Display</title>
+    <style>
+        body{
+            background-color: lightcoral;
+        }
+        h1{
+            color: navy;
+        }
+        h2{
+            color: navy;
+        }
+        p{
+           color: rgb(225, 225, 44); 
+           font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+    </style>
+</head>
+<body>
+    <h1>Whos That Pokemon?</h1>
+    <img src="https://i.redd.it/44q50wphs51a1.jpg" alt="infernape" 
+         style="position: absolute; top: 80px; right: 100px; width: 500px;">
+    <div id="userData"></div>
+
+
+    <script>
+        fetch('https://pokeapi.co/api/v2/pokemon/infernape') //fetches data from pokeapi and infernape
+            .then(response => response.json()).then(data => { // changes to json
+                document.getElementById('userData').innerHTML = `
+                    <h2>Its... ${data.name}!</h2> 
+                    <p>Height: ${data.height}</p>
+                    <p>Weight: ${data.weight}</p>`;}) //displays the pokemons name, height and weight
+                    .catch(error => {
+                document.getElementById('userData').innerText = 'Error fetching data';
+            });
+    </script>
+</body>
+</html>
